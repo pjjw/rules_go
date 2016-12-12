@@ -94,7 +94,8 @@ def go_environment_vars(ctx):
     the target OS and architecture.
   """
   bazel_to_go_toolchain = {"k8": {"GOOS": "linux",
-                                  "GOARCH": "amd64"},
+                                  "GOARCH": "amd64",
+                                  "GCO_ENABLED": "0"},
                            "piii": {"GOOS": "linux",
                                     "GOARCH": "386"},
                            "darwin": {"GOOS": "darwin",
@@ -107,7 +108,8 @@ def go_environment_vars(ctx):
                                    "GOARCH": "arm"}}
   return bazel_to_go_toolchain.get(ctx.fragments.cpp.cpu,
                                    {"GOOS": "linux",
-                                    "GOARCH": "amd64"})
+                                    "GOARCH": "amd64",
+                                    "CGO_ENABLED": "0"})
 
 def _emit_generate_params_action(cmds, ctx, fn):
   cmds_all = ["set -e"]
@@ -356,7 +358,7 @@ def emit_go_link_action(ctx, importmap, transitive_libs, cgo_deps, lib,
     ld = ('../' * out_depth) + ld
   ldflags = _c_linker_options(ctx) + [
       "-Wl,-rpath,$ORIGIN/" + ("../" * pkg_depth),
-      "-L" + prefix,
+      "-L" + prefix, "-static"
   ]
   for d in cgo_deps:
     if d.basename.endswith('.so'):
