@@ -142,13 +142,13 @@ def go_rules_dependencies(is_rules_go = False):
     _maybe(
         http_archive,
         name = "org_golang_google_protobuf",
-        sha256 = "7820cd724e3fdcfe322ed85420662cc21104b901af39a0e505e5059a3cb45a68",
+        sha256 = "62992b0f5864aee2077a6cffa57a2d2bd30e7af4b6745eebd816dcde3526002f",
         # v1.22.0, latest as of 2020-05-12
         urls = [
-            "https://mirror.bazel.build/github.com/protocolbuffers/protobuf-go/archive/v1.22.0.zip",
-            "https://github.com/protocolbuffers/protobuf-go/archive/v1.22.0.zip",
+            "https://mirror.bazel.build/github.com/protocolbuffers/protobuf-go/archive/v1.25.0.zip",
+            "https://github.com/protocolbuffers/protobuf-go/archive/v1.25.0.zip",
         ],
-        strip_prefix = "protobuf-go-1.22.0",
+        strip_prefix = "protobuf-go-1.25.0",
         patches = [
             # gazelle args: -repo_root . -go_prefix google.golang.org/protobuf -proto disable_global
             "@io_bazel_rules_go//third_party:org_golang_google_protobuf-gazelle.patch",
@@ -164,13 +164,12 @@ def go_rules_dependencies(is_rules_go = False):
     _maybe(
         http_archive,
         name = "com_github_golang_protobuf",
-        # v1.4.1, latest as of 2020-05-12
         urls = [
-            "https://mirror.bazel.build/github.com/golang/protobuf/archive/v1.4.1.zip",
-            "https://github.com/golang/protobuf/archive/v1.4.1.zip",
+            "https://mirror.bazel.build/github.com/golang/protobuf/archive/v1.4.2.zip",
+            "https://github.com/golang/protobuf/archive/v1.4.2.zip",
         ],
-        sha256 = "7b6e8ed38df65e08a4446aa09d3596b2cb56f279d8a813a3c491542b790f990d",
-        strip_prefix = "protobuf-1.4.1",
+        sha256 = "d661b447b6780ab0efd22011b963459dde08ae1f7fa782ab48809a66dcfd7c4c",
+        strip_prefix = "protobuf-1.4.2",
         patches = [
             # gazelle args: -repo_root . -go_prefix github.com/golang/protobuf -proto disable_global
             "@io_bazel_rules_go//third_party:com_github_golang_protobuf-gazelle.patch",
