@@ -99,7 +99,7 @@ def emit_compilepkg(
     if go.mode.msan:
         gc_flags.append("-msan")
     if go.mode.debug:
-        gc_flags.extend(["-N", "-l"])
+        gc_flags.extend(["all=-N -l"])
     gc_flags.extend(go.toolchain.flags.compile)
     gc_flags.extend(link_mode_args(go.mode))
     asm_flags.extend(link_mode_args(go.mode))
