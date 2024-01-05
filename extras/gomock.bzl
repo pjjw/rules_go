@@ -288,7 +288,10 @@ _gomock_prog_gen = rule(
 )
 
 def _gomock_prog_exec_impl(ctx):
-    args = ["-exec_only", ctx.file.prog_bin.path]
+    args = [
+        "-write_invocation_comment=false",
+        "-exec_only", ctx.file.prog_bin.path
+    ]
     args, needed_files = _handle_shared_args(ctx, args)
 
     # annoyingly, the interfaces join has to go after the importpath so we can't
